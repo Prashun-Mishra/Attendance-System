@@ -23,7 +23,7 @@ const Attendance = () => {
             await loadModels();
             try {
                 // Load all students for recognition
-                const res = await axios.get('http://localhost:5000/api/students');
+                const res = await axios.get(`${API_URL}/api/students`);
                 setStudents(res.data);
 
                 // Pre-calculate labeled descriptors
@@ -112,7 +112,7 @@ const Attendance = () => {
         setMessage(`Welcome, ${student.fullName}! Attendance Marked.`);
 
         try {
-            await axios.post('http://localhost:5000/api/attendance', {
+            await axios.post(`${API_URL}/api/attendance`, {
                 studentId: student.id,
                 status: 'Present'
             });
